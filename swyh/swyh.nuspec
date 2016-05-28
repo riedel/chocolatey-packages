@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Do not remove this test for UTF-8: if ??? doesn?t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>{{PackageName}}</id>
     <title>Stream What You Hear (SWYH)</title>
     <version>{{PackageVersion}}</version>
@@ -18,18 +17,22 @@ Features
     Record What You Hear into MP3 file
     </description>
     <projectUrl>http://www.streamwhatyouhear.com</projectUrl>
-    <tags>swyh admin</tags>
+    <tags>admin upnp media audio streaming</tags>
     <copyright></copyright>
-    <licenseUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/master/LICENSE</licenseUrl>
+    <licenseUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/{{PackageVersion}}/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
-    <iconUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/master/SWYH/Resources/Icons/swyh128.png</iconUrl>
-    <releaseNotes></releaseNotes>
+    <iconUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/{{PackageVersion}}/SWYH/Resources/Icons/swyh128.png</iconUrl>
+    <releaseNotes>https://github.com/StreamWhatYouHear/SWYH/releases/tag/{{PackageVersion}}</releaseNotes>
     <dependencies>
-  	<dependency id="chocolatey-uninstall.extension" />
+  	<dependency id="chocolatey-uninstall.extension" version="1.0" />
     </dependencies>
+    <packageSourceUrl>https://github.com/riedel/chocolatey-packages/tree/master/swyh</packageSourceUrl>
+    <projectSourceUrl>https://github.com/StreamWhatYouHear/SWYH</projectSourceUrl>
+    <bugTrackerUrl>https://github.com/StreamWhatYouHear/SWYH/issues</bugTrackerUrl>
+    <docsUrl>http://www.streamwhatyouhear.com/Getting-Started/</docsUrl>
+    <mailingListUrl>http://www.streamwhatyouhear.com/forums/</mailingListUrl>
   </metadata>
   <files>
-    <file src="tools\**" target="tools" />
+    <file src="tools\*.ps1" target="tools" />
   </files>
 </package>
