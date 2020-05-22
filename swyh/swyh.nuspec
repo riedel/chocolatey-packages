@@ -2,9 +2,9 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>{{PackageName}}</id>
+    <id>swyh</id>
     <title>Stream What You Hear (SWYH)</title>
-    <version>{{PackageVersion}}</version>
+    <version>1.5.0</version>
     <authors>Sébastien Warin</authors>
     <owners>Till Riedel</owners>
     <summary>Stream What You Hear (SWYH) is a Windows application to broadcast the sound of your computer (ie: “what you hear”) on an UPnP/DLNA device such as TVs, amps, network receivers, game consoles, etc…</summary>
@@ -19,12 +19,12 @@ Features
     <projectUrl>http://www.streamwhatyouhear.com</projectUrl>
     <tags>admin upnp media audio streaming</tags>
     <copyright></copyright>
-    <licenseUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/{{PackageVersion}}/LICENSE</licenseUrl>
+    <licenseUrl>https://rawcdn.githack.com/StreamWhatYouHear/SWYH/1.5.0/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/{{PackageVersion}}/SWYH/Resources/Icons/swyh128.png</iconUrl>
-    <releaseNotes>https://github.com/StreamWhatYouHear/SWYH/releases/tag/{{PackageVersion}}</releaseNotes>
+    <iconUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/1.5.0/SWYH/Resources/Icons/swyh128.png</iconUrl>
+    <releaseNotes>https://github.com/StreamWhatYouHear/SWYH/releases/tag/1.5.0/releaseNotes</releaseNotes>
     <dependencies>
-  	<dependency id="chocolatey-uninstall.extension" version="1.0" />
+    		<dependency id="chocolatey-core.extension" version="1.3" />
     </dependencies>
     <packageSourceUrl>https://github.com/riedel/chocolatey-packages/tree/master/swyh</packageSourceUrl>
     <projectSourceUrl>https://github.com/StreamWhatYouHear/SWYH</projectSourceUrl>

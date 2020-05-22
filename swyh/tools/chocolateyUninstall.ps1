@@ -1,7 +1,7 @@
 ﻿#swyh package uninstaller
-$packageName = '{{PackageName}}'
-$packageVersionMajorMinor= ([regex] '^[0-9]+\.[0-9]+').Match("{{PackageVersion}}").Value
-$softwareName = "Stream What You Hear (SWYH) version $packageVersionMajorMinor"
+$packageName    = $Env:ChocolateyPackageName
+
+$softwareName = "Stream What You Hear*"
 
 [array]$key = Get-UninstallRegistryKey -SoftwareName $softwareName
 
