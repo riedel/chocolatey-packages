@@ -2,7 +2,7 @@
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
   url                    = 'https://github.com/StreamWhatYouHear/SWYH/releases/download/1.5.0/SWYH_1.5.0.exe'
-  checksum               = '267F72FF5CCB056855574A1EB9B52D7916A3057B79F687CD5E1CC0C113BBE9CA'
+  checksum               = '267f72ff5ccb056855574a1eb9b52d7916a3057b79f687cd5e1cc0c113bbe9ca'
   checksumType           = 'sha256'
   silentArgs 		 = '/NORESTART /VERYSILENT /SUPPRESSMSGBOXES'
   validExitCodes         = @(0)

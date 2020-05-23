@@ -4,39 +4,40 @@ function global:au_BeforeUpdate { Get-RemoteFiles -NoSuffix -Purge }
 
 function global:au_GetLatest {
     $github_repository = "StreamWhatYouHear/SWYH"
-    "`n" + (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/StreamWhatYouHear/SWYH/master/README.md') | Set-Content  README.md 
 
     $package_repository= (git config remote.origin.url).split(":")[1].split(".")[0] 
 
-    $repos_api = "https://api.github.com/repos/" + $github_repository 
-    $repo = Invoke-WebRequest -Uri $repos_api | ConvertFrom-Json 
+    $repo = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository)
 
-    $releases_api = "https://api.github.com/repos/" + $github_repository + "/releases/latest"     
-    $releases = Invoke-WebRequest -Uri $releases_api | ConvertFrom-Json 
+    $release = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/releases/latest")     
 
-    $license_api = "https://api.github.com/repos/" + $github_repository + "/license"     
-    $license = Invoke-WebRequest -Uri $license_api | ConvertFrom-Json 
+    $license = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/license")     
 
-    $topics_api = "https://api.github.com/repos/" + $github_repository + "/topics"     
-    $topics=(Invoke-WebRequest -Headers @{'Accept' = 'application/vnd.github.mercy-preview+json'} -Uri $topics_api | ConvertFrom-Json).names -join " "
+    $readme = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/readme")     
 
-    $author = Invoke-WebRequest -Uri $releases.author.url | ConvertFrom-Json 
 
-    $version = $releases.tag_name
+    $topics=(Invoke-RestMethod -Headers @{'Accept' = 'application/vnd.github.mercy-preview+json'} ("https://api.github.com/repos/" + $github_repository + "/topics")).names -join " "
+
+    $release_author = Invoke-RestMethod $release.author.url
+
+
 
     return @{
-        Version = $version
-        URL32   = 'https://github.com/' + $github_repository + '/releases/download/' + $version + '/SWYH_' + $version + '.exe'
+	readmeUrl  = $readme.download_url
+        URL32   = ($release.assets | where-object {$_.content_type -eq "application/x-msdownload" })[0].browser_download_url 
+        Version = $release.tag_name
         packageSourceUrl   = 'https://github.com/' + $package_repository
-        projectSourceUrl   = 'https://github.com/' + $github_repository
+        projectSourceUrl   = $repo.html_url 
+        projectUrl   = $repo.homepage 
         bugTrackerUrl   = 'https://github.com/' + $package_repository + '/issues'
-        releaseNotes = 'https://github.com/' + $github_repository + '/releases/tag/' + $version + '/releaseNotes'
-       	iconUrl = 'https://cdn.rawgit.com/' + $github_repository + '/' + $version +'/SWYH/Resources/Icons/swyh128.png'
+        releaseNotes = $release.html_url 
         licenseUrl = $license.html_url 
-        authors = $author.name 
         summary = $repo.description 
+        authors = $release_author.name 
 	tags = 'admin ' + $topics
+       	iconUrl = 'https://cdn.rawgit.com/' + $github_repository + '/' + $release.tag_name +'/SWYH/Resources/Icons/swyh128.png'
     }
+
 }
 
 
@@ -46,23 +47,24 @@ function global:au_SearchReplace {
             "(^\s*checksum\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum32)'"
             "(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
         }
+}
+}
 
-        "$($Latest.PackageName).nuspec" = @{
-            "(\<releaseNotes\>).*?(\</releaseNotes\>)" = "`${1}$($Latest.releaseNotes)`$2"
-            "(\>).*?(\</licenseUrl\>)" = "`${1}$($Latest.licenseUrl)`$2"
-            "(\>).*?(\</iconUrl\>)" = "`${1}$($Latest.iconUrl)`$2"
-            "(\>).*?(\</tags\>)" = "`${1}$($Latest.tags)`$2"
-            "(\>).*?(\</authors\>)" = "`${1}$($Latest.authors)`$2"
-            "(\>).*?(\</projectSourceUrl\>)" = "`${1}$($Latest.projectSourceUrl)`$2"
-            "(\>).*?(\</packageSourceUrl\>)" = "`${1}$($Latest.packageSourceUrl)`$2"
-            "(\>).*?(\</bugTrackerUrl\>)" = "`${1}$($Latest.bugTrackerUrl)`$2"
-            "(\>).*?(\</summary\>)" = "`${1}$($Latest.summary)`$2"
+function global:au_BeforeUpdate($package) {
+    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+
+    $Latest.Keys | % {
+        if ($package.NuspecXml.package.metadata."$_") {
+            $package.NuspecXml.package.metadata."$_" = $Latest.Item($_)
         }
+    }
 
 }
+
+function global:au_AfterUpdate($package) {
+    rm ($package.Path + "\README.md")
 }
 
 if ($MyInvocation.InvocationName -ne '.') { # run the update only if script is not sourced
-    update -ChecksumFor none
+    update
 }
-
