@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>{id}</id>
+    <version>0.0</version>
+
+    <title>Stream What You Hear (SWYH)</title>
+    <authors>{authors}</authors>
+
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+
+    <projectUrl>{projectSourceUrl}</projectUrl>
+    <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
+    <projectSourceUrl>{githubUrl}</projectSourceUrl>
+    <iconUrl>{githubRawUrl}/BrowserSelect/bs.ico</iconUrl>
+    <docsUrl>{githubUrl}/help/filters.md</docsUrl>
+    <!--mailingListUrl></mailingListUrl-->
+
+    <summary>{summary}</summary>
+    <tags>admin {tags}</tags>
+    <releaseNotes>{releaseNotes}</releaseNotes>
+
+    <licenseUrl>{licenseUrl}</licenseUrl>
+    <packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
+
+    <description>{description}</description>
+
+    <dependencies>
+    		<dependency id="chocolatey-core.extension" version="1.3" />
+    </dependencies>
+
+    <owners>Till Riedel</owners>
+  </metadata>
+
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
+</package>
