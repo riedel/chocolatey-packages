@@ -1,3 +1,8 @@
+[CmdletBinding()]
+param(
+  [switch]$force
+)
+
 import-module au
 
 function global:au_GetLatest {
@@ -67,5 +72,5 @@ function global:au_AfterUpdate($package) {
 
 if ($MyInvocation.InvocationName -ne '.') { # run the update only if script is not sourced
     Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination {$_.name -replace '.in$','' }
-    update
+    update -NoCheckChocoVersion:$force 
 }

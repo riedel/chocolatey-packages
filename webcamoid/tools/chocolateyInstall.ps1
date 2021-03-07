@@ -1,13 +1,29 @@
-﻿$packageArgs = @{
+﻿$title = $Env:ChocolateyPackageName
+[array]$key = Get-UninstallRegistryKey -SoftwareName "*$title*"
+
+if($key.DisplayName)
+{
+  $packageArgs = @{
+    packageName          = $Env:ChocolateyPackageName
+    fileType             = 'EXE'
+    silentArgs 		 = "--script $Env:ChocolateyPackageFolder/tools/silentInstall.js"
+    file 		 = $key.UninstallString
+    validExitCodes       = 0,1
+  }
+
+  Uninstall-ChocolateyPackage @packageArgs
+}
+
+$packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
-  url                    = 'https://github.com/webcamoid/webcamoid/releases/download/8.7.1/webcamoid-8.7.1-win32.exe'
-  url64                    = 'https://github.com/webcamoid/webcamoid/releases/download/8.7.1/webcamoid-8.7.1-win64.exe'
-  checksum               = '84f6fb46446e8c6ced33899070655b7de089b47ca5412db84c8913a9e3ac2bce'
-  checksum64               = '0ec1b61ca7d658d0111789bcc666f4821d19411e61c633a2c24d5d2108168d8f'
+  url                    = 'https://github.com/webcamoid/webcamoid/releases/download/8.8.0/webcamoid-8.8.0-win32.exe'
+  url64                    = 'https://github.com/webcamoid/webcamoid/releases/download/8.8.0/webcamoid-8.8.0-win64.exe'
+  checksum               = '3e04c3afa7ac33e7f4923b69e1d3d62256a7f29645d98a19537b3d7e2a88c37e'
+  checksum64               = '0979046c5187325772fc73b3cfff7dc9462dc7c243df44db0f4df9c0f2ba8d77'
   checksumType           = 'sha256'
   silentArgs 		 = "--script $Env:ChocolateyPackageFolder/tools/silentInstall.js"
-  validExitCodes         = @(0)
+  validExitCodes         = 0,1
 }
 
 Install-ChocolateyPackage @packageArgs

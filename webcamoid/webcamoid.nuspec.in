@@ -15,7 +15,7 @@
     <projectUrl>{projectUrl}</projectUrl>
     <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
     <projectSourceUrl>{githubUrl}</projectSourceUrl>
-    <iconUrl>{githubRawUrl}/StandAlone/share/themes/WebcamoidTheme/icons/hicolor/scalable/webcamoid.svg</iconUrl>
+    <iconUrl>{githubRawUrl}/StandAlone/share/icons/hicolor/scalable/webcamoid.svg</iconUrl>
     <docsUrl>{projectSourceUrl}/wiki</docsUrl>
     <!--mailingListUrl></mailingListUrl-->
 
@@ -37,5 +37,6 @@
 
   <files>
     <file src="tools\*.ps1" target="tools" />
+    <file src="tools\*.js" target="tools" />
   </files>
 </package>
