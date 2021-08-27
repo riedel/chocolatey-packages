@@ -35,7 +35,7 @@ function global:au_GetLatest {
         summary = $repo.description 
         authors = $release_author.name 
 	tags = 'admin ' + $topics
-       	iconPath = 'icon/kopia.svg'
+       	iconPath = 'icons/kopia.svg'
     }
 
 }

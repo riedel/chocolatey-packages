@@ -15,8 +15,8 @@
     <projectUrl>{projectSourceUrl}</projectUrl>
     <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
     <projectSourceUrl>{githubUrl}</projectSourceUrl>
-    <!--docsUrl></docsUrl-->
-    <!--mailingListUrl></mailingListUrl-->
+    <docsUrl>https://kopia.io/docs/</docsUrl>
+    <mailingListUrl>https://kopia.discourse.group/</mailingListUrl>
     <iconUrl>{githubRawUrl}/{iconPath}</iconUrl>
 
     <summary>{summary}</summary>
