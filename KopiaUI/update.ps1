@@ -27,7 +27,7 @@ function global:au_GetLatest {
         URL32   = ($release.assets | where-object {$_.content_type -eq "application/x-msdos-program" })[0].browser_download_url 
         Version = $release.tag_name.substring(1)
         packageSourceUrl   = 'https://github.com/' + $package_repository
-        projectSourceUrl   = $repo.html_url 
+        projectSourceUrl   = $repo.homepage 
         githubRawUrl   = 'https://raw.githubusercontent.com/' + $github_repository + '/' + $release.tag_name 
         githubUrl   = 'https://github.com/' + $github_repository + '/tree/' + $release.tag_name 
         releaseNotes = $release.body 
