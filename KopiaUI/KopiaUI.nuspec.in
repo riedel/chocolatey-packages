@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
 
-    <projectUrl>{projectSourceUrl}</projectUrl>
+    <projectUrl>{projectUrl}</projectUrl>
     <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
     <projectSourceUrl>{githubUrl}</projectSourceUrl>
     <docsUrl>https://kopia.io/docs/</docsUrl>

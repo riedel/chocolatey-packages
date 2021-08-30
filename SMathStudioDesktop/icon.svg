@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="94.248mm" height="85.511mm" version="1.1" viewBox="0 0 94.248 85.511" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="a" x="-.29634" y="-.21029" width="1.5927" height="1.4206" color-interpolation-filters="sRGB">
+<feGaussianBlur result="result6" stdDeviation="5.3803069053708432"/>
+<feComposite in="SourceGraphic" in2="result6" operator="atop" result="result8"/>
+<feComposite in2="SourceAlpha" result="result9"/>
+<feColorMatrix result="result10" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "/>
+</filter>
+<filter id="b" x="-1.1876" y="-.80578" width="3.3752" height="2.6116" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" result="result0" stdDeviation="2.3"/>
+<feMorphology in="SourceAlpha" radius="6.6" result="result1"/>
+<feGaussianBlur in="result1" stdDeviation="8.9"/>
+<feColorMatrix result="result91" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.3 0"/>
+<feComposite in="result0" in2="result91" operator="out" result="result2"/>
+<feGaussianBlur result="result4" stdDeviation="1.7"/>
+<feDiffuseLighting surfaceScale="10">
+<feDistantLight azimuth="225" elevation="45"/>
+</feDiffuseLighting>
+<feBlend in2="SourceGraphic" mode="multiply"/>
+<feComposite in2="SourceAlpha" operator="in" result="result3"/>
+<feSpecularLighting in="result4" specularExponent="17.9" surfaceScale="5">
+<feDistantLight azimuth="225" elevation="45"/>
+</feSpecularLighting>
+<feComposite in2="result3" operator="atop"/>
+</filter>
+</defs>
+<g transform="translate(-64.972 -113.38)">
+<ellipse transform="matrix(.89677 0 0 .81306 28.64 101.35)" cx="94.179" cy="67.372" rx="40.917" ry="39.506" fill="#dfdfdf" filter="url(#a)" stroke-width=".26458"/>
+<g transform="matrix(1.6499 .085416 -.089728 1.5972 -34.864 71.068)" filter="url(#b)" stroke-width=".26458" aria-label="S">
+<path d="m102.67 30.546v4.8865q-2.8525-1.3643-5.3826-2.034t-4.8865-0.66973q-4.0928 0-6.3252 1.5875-2.2076 1.5875-2.2076 4.5145 0 2.4557 1.4635 3.7207 1.4883 1.2402 5.6059 2.0092l3.0262 0.62012q5.6059 1.0666 8.26 3.7703 2.6789 2.6789 2.6789 7.1934 0 5.3826-3.6215 8.1607-3.5967 2.7781-10.567 2.7781-2.6293 0-5.6059-0.59531-2.9518-0.59531-6.1268-1.7611v-5.1594q3.051 1.7115 5.9779 2.5797 2.927 0.86816 5.7547 0.86816 4.2912 0 6.6229-1.6867 2.3316-1.6867 2.3316-4.8121 0-2.7285-1.6867-4.2664-1.6619-1.5379-5.4818-2.3068l-3.051-0.59531q-5.6059-1.1162-8.1111-3.4975-2.5053-2.3812-2.5053-6.6229 0-4.9113 3.4479-7.7391 3.4727-2.8277 9.5498-2.8277 2.6045 0 5.3082 0.47129t5.5314 1.4139z"/>
+</g>
+<path d="m134.85 130.1-0.43845 7.8048q-4.5841-2.4226-8.6984-3.7084-4.1144-1.2858-8.0023-1.4871-6.7528-0.34959-10.579 1.9953-3.7848 2.347-4.0475 7.022-0.22034 3.9222 2.0808 6.0677 2.3443 2.108 9.069 3.6879l4.9373 1.2489q9.1536 2.1824 13.29 6.7275 4.1796 4.5076 3.7746 11.718-0.48297 8.5972-6.7074 12.725-6.1835 4.13-17.684 3.5347-4.3382-0.22458-9.1958-1.4297-4.8168-1.203-9.9507-3.3362l0.46294-8.2406q4.8803 2.9943 9.6317 4.6309 4.7514 1.6366 9.4169 1.8782 7.0802 0.36654 11.079-2.1283 3.9984-2.4949 4.2788-7.4868 0.24483-4.358-2.4001-6.9584-2.604-2.5983-8.8376-4.1527l-4.9805-1.2114q-9.1491-2.2616-13.069-6.279-3.9199-4.0173-3.5393-10.792 0.44068-7.8444 6.3831-12.066 5.9834-4.2198 16.01-3.7008 4.2972 0.22246 8.7159 1.2062t8.9996 2.7307z" stroke-width=".43014"/>
+</g>
+</svg>
