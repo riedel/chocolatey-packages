@@ -1,10 +1,10 @@
 ﻿$packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
-  url                    = 'https://github.com/kopia/kopia/releases/download/v0.8.4/KopiaUI-Setup-0.8.4.exe'
-  checksum               = '67764e0786a2c0aa4ca218d980ac3e9fc1dcc166de1c802ff84fca8a1910323b'
+  url                    = 'https://github.com/kopia/kopia/releases/download/v0.9.0-rc2/KopiaUI-Setup-0.9.0-rc2.exe'
+  checksum               = '7b8ac1f58cf4df23e73a813f384259844a6b58a988110149c4eb3faf18cb890c'
   checksumType           = 'sha256'
-  silentArgs 		 = '/S'
+  silentArgs 		 = '/S /allusers /disableAutoUpdates'
   validExitCodes         = @(0)
 }
 
@@ -17,3 +17,5 @@ Write-Host "$packageName installed to '$installLocation'"
 
 Register-Application "$installLocation\$packageName.exe"
 Write-Host "$packageName registered as $packageName"
+
+Install-BinFile -Name "kopia" "$installLocation\resources\server\kopia.exe"
