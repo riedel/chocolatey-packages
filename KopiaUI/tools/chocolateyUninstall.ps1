@@ -1,8 +1,7 @@
-﻿$title = $Env:ChocolateyPackageName
-[array]$key = Get-UninstallRegistryKey -SoftwareName "*$title*"
+﻿$name = $Env:ChocolateyPackageName
+[array]$key = Get-UninstallRegistryKey -SoftwareName "*$name*"
 $uninstallstring = $key.QuietUninstallString
 $file,$silentArgs = iex "echo $uninstallstring"
-
 
 Write-Debug "using UnInstaller at $key.UninstallString"
 
@@ -15,3 +14,4 @@ $packageArgs = @{
 }
 
 Uninstall-ChocolateyPackage @packageArgs
+Uninstall-BinFile -Name "kopia"

@@ -52,7 +52,8 @@ function global:au_SearchReplace {
 }
 
 function global:au_BeforeUpdate($package) {
-    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    $readme = ((Invoke-WebRequest -Uri $Latest.readmeUrl).Content) -replace '\]\(([\w\./]+)\)',('](' + $Latest.githubRawUrl + '/$1)') 
+    $readme.substring(0, $readme.indexOf('Building Kopia')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
 
 $package.NuspecXml.package.metadata.ChildNodes|% { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
 }
