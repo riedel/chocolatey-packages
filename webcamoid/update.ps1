@@ -32,7 +32,7 @@ function global:au_GetLatest {
         URL32 = ($release.assets | where-object {$_.name -like "*win32.exe" })[0].browser_download_url 
         URL64 = ($release.assets | where-object {$_.name -like "*win64.exe" })[0].browser_download_url 
 	readmeUrl  = $readme.download_url
-        Version = $release.tag_name
+        Version = $release.tag_name+"-update1"
         packageSourceUrl   = 'https://github.com/' + $package_repository
         projectUrl = $repo.homepage 
         projectSourceUrl   = $repo.html_url 

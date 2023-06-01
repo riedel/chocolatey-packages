@@ -1,12 +1,12 @@
 ﻿$title = $Env:ChocolateyPackageName
-[array]$key = Get-UninstallRegistryKey -SoftwareName "*$title*"
-Write-Debug "using UnInstaller at $key.UninstallString"
+$installLocation = Get-AppInstallLocation $Env:ChocolateyPackageName
+Write-Debug "using UnInstaller at $installLocation"
 
 $packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
-  silentArgs 		 = "--script $Env:ChocolateyPackageFolder/tools/silentInstall.js"
-  file 			 = $key.UninstallString
+  silentArgs 		 = "/S"
+  file 			 = "$installLocation\uninstall.exe"
   validExitCodes         = @(0)
 }
 
