@@ -15,16 +15,15 @@ function global:au_GetLatest {
 
     $readme = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/readme")     
 
-
     $topics=(Invoke-RestMethod -Headers @{'Accept' = 'application/vnd.github.mercy-preview+json'} ("https://api.github.com/repos/" + $github_repository + "/topics")).names -join " "
 
     $release_author = Invoke-RestMethod $release.author.url
 
+    $url32=($release.assets | where-object {$_.content_type -eq "application/x-ms-dos-executable" })[0].browser_download_url 
 
-
-    return @{
-	readmeUrl  = $readme.download_url
-        URL32   = ($release.assets | where-object {$_.content_type -eq "application/x-msdos-program" })[0].browser_download_url 
+    $ret=@{
+	    readmeUrl  = $readme.download_url
+        URL32   = $url32
         Version = $release.tag_name.substring(1)
         packageSourceUrl   = 'https://github.com/' + $package_repository
         projectUrl   = $repo.homepage 
@@ -35,10 +34,10 @@ function global:au_GetLatest {
         licenseUrl = $license.html_url 
         summary = $repo.description 
         authors = $release_author.name 
-	tags = 'admin ' + $topics
+	    tags = 'admin ' + $topics
        	iconPath = 'icons/kopia.svg'
     }
-
+    return $ret
 }
 
 
@@ -53,9 +52,9 @@ function global:au_SearchReplace {
 
 function global:au_BeforeUpdate($package) {
     $readme = ((Invoke-WebRequest -Uri $Latest.readmeUrl).Content) -replace '\]\(([\w\./]+)\)',('](' + $Latest.githubRawUrl + '/$1)') 
-    $readme.substring(0, $readme.indexOf('Building Kopia')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    $readme.substring(0, $readme.indexOf('Pick the Cloud')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
 
-$package.NuspecXml.package.metadata.ChildNodes|% { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
+    $package.NuspecXml.package.metadata.ChildNodes|% { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
 }
 
 function global:au_AfterUpdate($package) {
@@ -66,3 +65,4 @@ if ($MyInvocation.InvocationName -ne '.') { # run the update only if script is n
     Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination {$_.name -replace '.in$','' }
     update
 }
+update

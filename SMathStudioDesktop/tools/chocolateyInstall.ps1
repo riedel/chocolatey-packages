@@ -1,8 +1,8 @@
 ﻿$packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'MSI'
-  url                    = 'https://smath.com/file/ewBDg/SMathStudioDesktop.0_99_7822.Setup.msi'
-  checksum               = 'e45bcc82edfb5b224178e8695c674dfdd363903f9d1765071404790e934915cd'
+  url                    = 'https://smath.com/file/gFxHG/SMathStudioDesktop.1_0_8253.Setup.msi'
+  checksum               = '53512fb151f6774f8453ca119baac09c3f8f977d8c435c7b09da3dd642b601d0'
   checksumType           = 'sha256'
   silentArgs 		 = '/quiet /qn /norestart'
   validExitCodes         = @(0)

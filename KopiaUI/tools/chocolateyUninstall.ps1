@@ -1,4 +1,5 @@
-﻿$name = $Env:ChocolateyPackageName
+﻿$ErrorActionPreference = 'Stop'
+$name = $Env:ChocolateyPackageName
 [array]$key = Get-UninstallRegistryKey -SoftwareName "*$name*"
 $uninstallstring = $key.QuietUninstallString
 $file,$silentArgs = iex "echo $uninstallstring"
