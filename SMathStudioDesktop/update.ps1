@@ -31,19 +31,29 @@ function global:au_GetLatest {
 
 	$stable = Get-FixedQuerySelectorAll $releases "div.stable" 
 
-	$file = Get-FixedQuerySelectorAll $stable[0] "span.file + a"
-	$file[0].protocol="https"
+	$link = Get-FixedQuerySelectorAll $stable[0] "a[itemprop='downloadUrl']"
+	$link.protocol="https"
+	$link.host="en.smath.com"
+	
 
 	$stable[0].firstChild().firstChild().innerText -match '[0-9]*\.[0-9]*\.[0-9]*'
 	$version = $Matches[0]
 
 	$releaseNotes = $stable[0].nextSibling().innerHtml|pandoc -f html -t markdown | Out-String
 
+	$release =  Invoke-WebRequest -Uri $link.href
+
+	$windows = Get-FixedQuerySelectorAll $release "div.platform-type" 
+
+	$link = Get-FixedQuerySelectorAll $windows[0] "a"
+	$link[0].protocol="https"
+
 	
+
 
 	return @{
 		    readmeUrl  =  $homepage + "/view/SMathStudio/summary"
-			URL32  = $file[0].href
+			URL32  = $link[0].href
 			Version = $version
 			releaseNotes = $releaseNotes
 			Options = @{
