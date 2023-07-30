@@ -32,7 +32,7 @@ function global:au_GetLatest {
         URL32 = ($release.assets | where-object {$_.name -like "*win32.exe" })[0].browser_download_url 
         URL64 = ($release.assets | where-object {$_.name -like "*win64.exe" })[0].browser_download_url 
 	readmeUrl  = $readme.download_url
-        Version = $release.tag_name+"-update1"
+        Version = $release.tag_name
         packageSourceUrl   = 'https://github.com/' + $package_repository
         projectUrl = $repo.homepage 
         projectSourceUrl   = $repo.html_url 
@@ -40,7 +40,7 @@ function global:au_GetLatest {
         githubUrl   = 'https://github.com/' + $github_repository + '/tree/' + $release.tag_name 
         releaseNotes = $release.body 
         licenseUrl = $license.html_url 
-        summary = $repo.description 
+        summary = $repo.description
         authors = $release_author.name 
 	tags = $topics
        	iconPath = '/BrowserSelect/bs.ico'
@@ -61,7 +61,7 @@ function global:au_SearchReplace {
 }
 
 function global:au_BeforeUpdate($package) {
-    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content |pandoc -f gfm -t gfm --lua-filter=filter.lua |  Out-File -Encoding "UTF8" ($package.Path + "\README.md")
 
 $package.NuspecXml.package.metadata.ChildNodes|% { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
 }
