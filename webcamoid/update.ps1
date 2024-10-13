@@ -7,6 +7,7 @@ import-module au
 
 function global:au_GetLatest {
     $github_repository = "webcamoid/webcamoid"
+    $github_build_repository = "riedel/webcamoid-build-for-chocolatey"
 
     $package_repository= (git config remote.origin.url).split(":")[1].split(".")[0] 
 
@@ -14,6 +15,10 @@ function global:au_GetLatest {
 
 
     $release = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/releases/latest")     
+
+
+    $buildrelease = Invoke-RestMethod ("https://api.github.com/repos/" + $github_build_repository + "/releases/tags/" + $release.tag_name)     
+
 
 
     $license = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/license")     
@@ -29,8 +34,6 @@ function global:au_GetLatest {
 
 
      @{
-        URL32 = ($release.assets | where-object {$_.name -like "*win32.exe" })[0].browser_download_url 
-        URL64 = ($release.assets | where-object {$_.name -like "*win64.exe" })[0].browser_download_url 
 	readmeUrl  = $readme.download_url
         Version = $release.tag_name
         packageSourceUrl   = 'https://github.com/' + $package_repository
@@ -39,11 +42,12 @@ function global:au_GetLatest {
         githubRawUrl   = 'https://raw.githubusercontent.com/' + $github_repository + '/' + $release.tag_name 
         githubUrl   = 'https://github.com/' + $github_repository + '/tree/' + $release.tag_name 
         releaseNotes = $release.body 
+        verification = $buildrelease.body 
         licenseUrl = $license.html_url 
+        license = $license.download_url 
         summary = $repo.description
         authors = $release_author.name 
 	tags = $topics
-       	iconPath = '/BrowserSelect/bs.ico'
     }
 
 }
@@ -52,16 +56,14 @@ function global:au_GetLatest {
 function global:au_SearchReplace {
 @{
         ".\tools\chocolateyInstall.ps1" = @{
-            "(^\s*checksum\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum32)'"
-            "(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
-            "(^\s*checksum64\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum64)'"
-            "(^\s*url64\s*=\s*)('.*')"          = "`$1'$($Latest.URL64)'"
         }
 }
 }
 
 function global:au_BeforeUpdate($package) {
-    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content |pandoc -f gfm -t gfm --lua-filter=filter.lua |  Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    "`n" + (Invoke-WebRequest -Uri $Latest.readmeUrl).Content |pandoc -f gfm -t gfm-raw_html --lua-filter=filter.lua |  Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    "`n" + (Invoke-WebRequest -Uri $Latest.license).Content |  Out-File -Encoding "UTF8" ($package.Path + "\tools\LICENSE.txt")
+    $Latest.verification | Out-File -Encoding "UTF8" ($package.Path + "\tools\VERIFICATION.txt")
 
 $package.NuspecXml.package.metadata.ChildNodes|% { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
 }
@@ -72,5 +74,5 @@ function global:au_AfterUpdate($package) {
 
 if ($MyInvocation.InvocationName -ne '.') { # run the update only if script is not sourced
     Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination {$_.name -replace '.in$','' }
-    update -NoCheckChocoVersion:$force 
+    update -ChecksumFor:none -NoCheckChocoVersion:$force 
 }

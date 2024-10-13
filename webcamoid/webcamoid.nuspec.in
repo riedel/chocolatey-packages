@@ -38,5 +38,7 @@
   <files>
     <file src="tools\*.ps1" target="tools" />
     <file src="tools\*.js" target="tools" />
+    <file src="tools\*.txt" target="tools" />
+    <file src="installer\*.exe" target="installer" />
   </files>
 </package>
