@@ -12,9 +12,9 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 
 
-		<summary>Tiny, powerful, free mathematical program with WYSIWYG editor and complete units of measurements support. It provides numerous computing features and rich user interface translated into about 40 different languages. Application also contains integrated mathematical reference book.</summary>
+		<summary>Tiny, powerful mathematical program with WYSIWYG editor and complete units of measurements support and free for personal use. It provides numerous computing features and rich user interface translated into about 40 different languages. Application also contains integrated mathematical reference book.</summary>
 
-		<description>SMath Studio is a freeware (free of charge, but not libre), closed-source, mathematical notebook program similar to Mathcad. It is available for Windows, Linux, iOS, Android, Universal Windows Platform, and on some handhelds.
+		<description>SMath Studio is a freeware (free of charge, but not libre) mathematical notebook program similar to Mathcad. It is available for Windows, Linux, iOS, Android, Universal Windows Platform, and on some handhelds.
 
 Among its capabilities are:
 
@@ -40,7 +40,7 @@ Among its capabilities are:
 		<bugTrackerUrl>https://smath.com/bts/</bugTrackerUrl>
 		<mailingListUrl>https://en.smath.com/forum/</mailingListUrl>
 		<iconUrl>https://en.smath.com/img/favicon.ico</iconUrl>
-		<docsUrl>https://en.smath.com/list/handbooks</docsUrl>
+		<docsUrl>https://smath.com/wiki</docsUrl>
 
 		<packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
 

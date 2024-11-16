@@ -1,10 +1,10 @@
 ﻿$packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'MSI'
-  url                    = 'https://smath.com/file/KHggH/SMathStudioDesktop.1_0_8348.Setup.msi'
-  checksum               = 'a470f0e666755788e7894f7d290183fe3cae91ba1508d3d2f1d2c7ed57dd647a'
+  url                    = 'https://smath.com/en-US/files/Download/gbNh3/SMathStudioDesktop.1_2_9018.Setup.msi'
+  checksum               = '893adb211eb0bb4f774372ce8ba9ea6a648e98cbbeda830db523e004f174da0c'
   checksumType           = 'sha256'
-  silentArgs 		 = '/quiet /qn /norestart'
+  silentArgs 		 = '/quiet /qn'
   validExitCodes         = @(0)
   Options = @{
     Headers = @{
@@ -15,10 +15,11 @@
 
 Install-ChocolateyPackage @packageArgs
 
-$packageName = $packageArgs.packageName
-$installLocation = Get-AppInstallLocation $packageName
-if (!$installLocation)  { Write-Warning "Can't find $packageName install location"; return }
-Write-Host "$packageName installed to '$installLocation'"
+# $packageName = $packageArgs.packageName
+# $installLocation = Get-AppInstallLocation $Env:ChocolateyPackageTitle
+# if (!$installLocation)  { Write-Warning "Can't find $packageName install location"; return }
+# Write-Host "$packageName installed to '$installLocation'"
 
-Register-Application "$installLocation\$packageName.exe"
-Write-Host "$packageName registered as $packageName"
+# Register-Application "$installLocation\Solver.exe"
+
+# Write-Host "$packageName registered"

@@ -26,14 +26,14 @@ function global:au_GetLatest {
 	
     $package_repository= (git config remote.origin.url).split(":")[1].split(".")[0] 
 
-	$homepage = "https://en.smath.com"
+	$homepage = "https://smath.com/en-US"
 	$releases =  Invoke-WebRequest -Uri "$homepage/view/SMathStudio/history"
 
 	$stable = Get-FixedQuerySelectorAll $releases "div.stable" 
 
 	$link = Get-FixedQuerySelectorAll $stable[0] "a[itemprop='downloadUrl']"
 	$link.protocol="https"
-	$link.host="en.smath.com"
+	$link.host="smath.com"
 	
 
 	$stable[0].firstChild().firstChild().innerText -match '[0-9]*\.[0-9]*\.[0-9]*'
@@ -46,14 +46,15 @@ function global:au_GetLatest {
 	$windows = Get-FixedQuerySelectorAll $release "div.platform-type" 
 
 	$link = Get-FixedQuerySelectorAll $windows[0] "a"
-	$link[0].protocol="https"
+	$link.protocol="https"
+	$link.host="smath.com"
 
 	
 
 
 	return @{
 		    readmeUrl  =  $homepage + "/view/SMathStudio/summary"
-			URL32  = $link[0].href
+			URL32  = $link.href
 			Version = $version
 			releaseNotes = $releaseNotes
 			Options = @{
@@ -87,7 +88,7 @@ function global:au_AfterUpdate($package) {
 
 }
 
-if ($MyInvocation.InvocationName -ne '.') { # run the update only if script is not sourced
+if ($MyInvocation.InvocationName -ne 'x.') { # run the update only if script is not sourced
 	Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination {$_.name -replace '.in$','' }
 	update -ChecksumFor none 
 }
