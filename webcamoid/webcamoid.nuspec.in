@@ -23,7 +23,7 @@
     <tags>admin {tags}</tags>
     <releaseNotes>{releaseNotes}</releaseNotes>
 
-    <licenseUrl>{licenseUrl}</licenseUrl>
+    <licenseUrl>{licenseHTMLUrl}</licenseUrl>
     <packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
 
     <description>{description}</description>

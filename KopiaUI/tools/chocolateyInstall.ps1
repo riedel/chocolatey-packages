@@ -2,8 +2,8 @@
 $packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
-  url                    = 'https://github.com/kopia/kopia/releases/download/v0.13.0/KopiaUI-Setup-0.13.0.exe'
-  checksum               = 'dbb8423e62a4d1a9a729c9f274a268a74b48cae14f3142054193edf491f616b9'
+  url                    = 'https://github.com/kopia/kopia/releases/download/v0.19.0/KopiaUI-Setup-0.19.0.exe'
+  checksum               = '6dd51d77f4dc958fd3e12073df7306f4558be63a74e5c156135c612002fbbc33'
   checksumType           = 'sha256'
   silentArgs 		 = '/S /allusers /disableAutoUpdates'
   validExitCodes         = @(0)
@@ -12,6 +12,8 @@ $packageArgs = @{
 Install-ChocolateyPackage @packageArgs
 
 $packageName = $packageArgs.packageName
+
+#chocolatey-core.extension (TODO: check if we need this?)
 $installLocation = Get-AppInstallLocation $packageName
 if (!$installLocation)  { Write-Warning "Can't find $packageName install location"; return }
 Write-Host "$packageName installed to '$installLocation'"
