@@ -19,14 +19,18 @@ function global:git_getRepo ($package) {
 
 function global:au_SearchReplace {
 
-	if ($Latest.containsKey("URL32")) {
+	if ($Latest.containsKey("URL32") -and -not $Latest.containsKey("Checksum32")) {
 
 		$Latest.ChecksumType32 = 'sha256'
 		$Latest.Checksum32 = Get-RemoteChecksum $Latest.URL32 -Algorithm $Latest.ChecksumType32 -Headers $Latest.Options.Headers
+	}
+
+	if ($Latest.containsKey("URL32")) {
 		@{
 			".\tools\chocolateyInstall.ps1" = @{
 				"(^\s*checksum\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum32)'"
-					"(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
+				"(^\s*checksumType\s*=\s*)('.*')" = "`$1'$($Latest.ChecksumType32)'"
+				"(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
 			}
 		}
 	}else{
