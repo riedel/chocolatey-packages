@@ -36,7 +36,7 @@ function global:au_GetLatest {
 	$link.host="smath.com"
 	
 
-	$stable[0].firstChild().firstChild().innerText -match '[0-9]*\.[0-9]*\.[0-9]*'
+	$stable[0].firstChild().firstChild().innerText -match '[0-9]*\.[0-9]*\.[0-9]*\.?[0-9]*'
 	$version = $Matches[0]
 
 	$releaseNotes = $stable[0].nextSibling().innerHtml|pandoc -f html -t markdown | Out-String

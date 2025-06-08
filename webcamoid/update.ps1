@@ -38,4 +38,4 @@ function global:au_BeforeUpdateHook($package) {
     $Latest.verification | Out-File -Encoding "UTF8" ($package.Path + "\tools\VERIFICATION.txt")
 }
 
-. "$PSScriptRoot\..\update.ps1"
+. "$PSScriptRoot\..\update_include.ps1"

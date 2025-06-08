@@ -3,7 +3,7 @@ param(
   [switch]$force
 )
 
-$global:force=( $true -or !(!($force)) )
+$global:force=!(!($force))
 
 function global:au_GetLatest {
     $github_repository = "kopia/kopia"
@@ -47,4 +47,4 @@ function global:au_BeforeUpdateHook($package) {
     $readme.substring(0, $readme.indexOf('When ready')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
 }
 
-. "$PSScriptRoot\..\update.ps1"
+. "$PSScriptRoot\..\update_include.ps1"
