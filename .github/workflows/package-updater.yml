@@ -41,8 +41,7 @@ jobs:
       - name: Install Dependencies
         run: |
           Set-Service wuauserv -StartupType Manual
-          git clone -q https://github.com/majkinetor/au.git $Env:TEMP/au
-          . "$Env:TEMP/au/scripts/Install-AU.ps1" $Env:au_version
+          choco install -f packages.config
           foreach ($module in (Import-PowerShellDataFile -Path requirements.psd1).RequiredModules) {Install-Module -Name $module -Force}
         shell: powershell
       - name: System information
@@ -68,7 +67,7 @@ jobs:
         shell: powershell
       - name: Create diff file
         run: |
-          git add automatic extension manual templates
+          Get-ChildItem -Path . -Directory | Where-Object { $_.Name -notmatch '^\.' } | Foreach { git add $_.Name }
           git diff --cached > unsaved_changes.patch
       - name: Create au temporary directory
         run: |
