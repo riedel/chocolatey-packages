@@ -7,7 +7,7 @@ function global:au_GetLatest {
     $buildrelease = Invoke-RestMethod ("https://api.github.com/repos/" + $github_build_repository + "/releases/tags/" + $github.release.tag_name)     
 
     @{
-	    readmeUrl  = $github.readme.download_url
+	readmeUrl  = $github.readme.download_url
         Version = $github.release.tag_name
     	NuspecVersion = $Global:PackageVersion
         packageSourceUrl   = 'https://github.com/' +  ( global:git_getRepo ) 
