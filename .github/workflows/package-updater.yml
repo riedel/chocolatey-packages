@@ -30,6 +30,9 @@ jobs:
       nuget_artifacts: ${{ github.runner.temp }}/artifacts
 
     steps:
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
       - name: Configure git client
         run: |
           git config --global user.email "riedel@teco.edu"
@@ -40,6 +43,7 @@ jobs:
           Set-Service wuauserv -StartupType Manual
           git clone -q https://github.com/majkinetor/au.git $Env:TEMP/au
           . "$Env:TEMP/au/scripts/Install-AU.ps1" $Env:au_version
+          foreach ($module in (Import-PowerShellDataFile -Path requirements.psd1).RequiredModules) {Install-Module -Name $module -Force}
         shell: powershell
       - name: System information
         run: |
@@ -51,9 +55,6 @@ jobs:
           '  {0,-20} {1}' -f 'SCHEDULED BUILD:', ("${{ github.event_name }}" -eq 'schedule')
           '  {0,-20} {1}' -f 'FORCED BUILD:'   , ("${{ github.event_name }}" -eq 'workflow_dispatch')
         shell: powershell
-      - uses: actions/checkout@v3.5.0
-        with:
-          fetch-depth: 0
       - name: Run package updater
         env:
           FORCED_PACKAGES: ${{ github.event.inputs.packages }}
