@@ -2,29 +2,45 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>{id}</id>
-    <version>0.0</version>
+    <id>webcamoid</id>
+    <version>9.2.3</version>
 
     <title>Webcamoid</title>
-    <authors>Gonzalo Exequiel Pedone</authors>
+    <authors>hipersayanX</authors>
 
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
 
-    <projectUrl>{projectUrl}</projectUrl>
-    <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
-    <projectSourceUrl>{githubUrl}</projectSourceUrl>
-    <iconUrl>{githubRawUrl}/StandAlone/share/themes/WebcamoidTheme/icons/hicolor/scalable/webcamoid.svg</iconUrl>
-    <docsUrl>{projectSourceUrl}/wiki</docsUrl>
+    <projectUrl>https://github.com/webcamoid/webcamoid</projectUrl>
+    <bugTrackerUrl>https://github.com/webcamoid/webcamoid/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/webcamoid/webcamoid/tree/</projectSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/webcamoid/webcamoid/9.2.3/StandAlone/share/themes/WebcamoidTheme/icons/hicolor/scalable/webcamoid.svg</iconUrl>
+    <docsUrl>https://github.com/webcamoid/webcamoid/wiki</docsUrl>
     <!--mailingListUrl></mailingListUrl-->
 
-    <summary>{summary}</summary>
-    <tags>admin {tags}</tags>
-    <releaseNotes>{releaseNotes}</releaseNotes>
+    <summary>Webcamoid is a full featured and multiplatform webcam suite.</summary>
+    <tags>webcam virtual-camera desktop-capturing</tags>
+    <releaseNotes># ChangeLog
 
-    <licenseUrl>{licenseHTMLUrl}</licenseUrl>
-    <packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
+- Only compress Android package with ads.
+
+# Downloads
+
+Download the pre-compiled packages for GNU/Linux, Windows, and Android.
+Binary packages for Mac are available only for sponsors, due to I'm unable to test them I can't release to the general public, consider [becoming a sponsor](https://github.com/sponsors/hipersayanX) and help with the development for Mac.
+
+[![Release buidls](http://webcamoid.github.io/theme/images/DownloadButtons/BinaryPackagesButton.png)](https://payhip.com/Webcamoid)
+
+## Donations campaings ##
+
+Do you want to use Webcamoid in MacOs X, you can colabore in the donations campaing for buying MacBook.
+
+[![Go to GoGetFunding](https://img.shields.io/badge/campaign-GoGetFunding-blue?style=for-the-badge)](https://gogetfunding.com/buying-a-macbook-for-webcamoid-macos-development/)
+</releaseNotes>
+
+    <licenseUrl>https://raw.githubusercontent.com/webcamoid/webcamoid/master/COPYING</licenseUrl>
+    <packageSourceUrl>https://github.com/riedel/chocolatey-packages</packageSourceUrl>
 
     <description>{description}</description>
 

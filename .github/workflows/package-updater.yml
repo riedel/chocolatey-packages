@@ -13,7 +13,7 @@ on:
 
 jobs:
   updater:
-    runs-on: windows-2019
+    runs-on: windows-2022
     env:
       au_version: master
       au_push: true
@@ -41,7 +41,7 @@ jobs:
       - name: Install Dependencies
         run: |
           Set-Service wuauserv -StartupType Manual
-          choco install -f packages.config
+          choco install -f --no-progress packages.config
           foreach ($module in (Import-PowerShellDataFile -Path requirements.psd1).RequiredModules) {Install-Module -Name $module -Force}
         shell: powershell
       - name: System information

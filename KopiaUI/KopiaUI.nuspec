@@ -1,32 +1,86 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>{id}</id>
-    <version>0.0</version>
+    <id>KopiaUI</id>
+    <version>0.20.1.20250611</version>
 
     <title>Kopia UI</title>
-    <authors>{authors}</authors>
+    <authors>Kopia Builder [bot]</authors>
 
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
 
-    <projectUrl>{projectUrl}</projectUrl>
-    <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
-    <projectSourceUrl>{githubUrl}</projectSourceUrl>
+    <projectUrl>https://kopia.io</projectUrl>
+    <bugTrackerUrl>https://github.com/kopia/kopia/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/kopia/kopia/tree/v0.20.1</projectSourceUrl>
     <docsUrl>https://kopia.io/docs/</docsUrl>
     <mailingListUrl>https://kopia.discourse.group/</mailingListUrl>
-    <iconUrl>{githubRawUrl}/{iconPath}</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/kopia/kopia/v0.20.1/icons/kopia.svg</iconUrl>
 
-    <summary>{summary}</summary>
-    <tags>{tags}</tags>
-    <releaseNotes>{releaseNotes}</releaseNotes>
+    <summary>Cross-platform backup tool for Windows, macOS &amp; Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included.</summary>
+    <tags>admin deduplication backup google-cloud-storage encryption cloud hacktoberfest</tags>
+    <releaseNotes>
+### Command-Line Interface
 
-    <licenseUrl>{licenseUrl}</licenseUrl>
-    <packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
+* minor cleanups in diff tests ([#4594](https://github.com/kopia/kopia/issues/4594)) by Julio Lopez
 
-    <description>{description}</description>
+### Server
+
+* fixed server-based notifications ([#4598](https://github.com/kopia/kopia/issues/4598)) by Jarek Kowalski
+
+### Snapshots
+
+* fixed snapshotting of \\server\share ([#4603](https://github.com/kopia/kopia/issues/4603)) by Jarek Kowalski
+* Remove checkpoints after a complete snapshot ([#4439](https://github.com/kopia/kopia/issues/4439)) by shniubobo
+
+### Notifications
+
+* fixed notification severities on snapshot creation ([#4604](https://github.com/kopia/kopia/issues/4604)) by Jarek Kowalski
+
+### CI/CD
+
+* enforce consistent formatting of KopiaUI code ([#4586](https://github.com/kopia/kopia/issues/4586)) by Jarek Kowalski
+
+
+### Graphical User Interface
+
+* reformat code to 120 characters per line ([#338](https://github.com/kopia/htmlui/issues/338)) by Jarek Kowalski
+* fixed 'Set Policy' button ([#337](https://github.com/kopia/htmlui/issues/337)) by Jarek Kowalski
+* SMTP credentials should not be required ([#336](https://github.com/kopia/htmlui/issues/336)) by Jarek Kowalski
+* ignore exceptions when making incremental changes to the policy ([#335](https://github.com/kopia/htmlui/issues/335)) by Jarek Kowalski
+* report code coverage ([#334](https://github.com/kopia/htmlui/issues/334)) by Jarek Kowalski
+* globally apply prettier formatting ([#333](https://github.com/kopia/htmlui/issues/333)) by Jarek Kowalski
+</releaseNotes>
+
+    <licenseUrl>https://github.com/kopia/kopia/blob/master/LICENSE</licenseUrl>
+    <packageSourceUrl>https://github.com/riedel/chocolatey-packages</packageSourceUrl>
+
+    <description><![CDATA[
+![Kopia](/icons/kopia.svg)
+[![Build Status](https://github.com/kopia/kopia/workflows/Build/badge.svg)](https://github.com/kopia/kopia/actions?query=workflow%3ABuild)
+[![Slack](https://img.shields.io/badge/discuss-slack-blue.svg)](https://slack.kopia.io/) 
+[![GoDoc](https://godoc.org/github.com/kopia/kopia/repo?status.svg)](https://godoc.org/github.com/kopia/kopia/repo)
+[![Coverage Status](https://codecov.io/gh/kopia/kopia/branch/master/graph/badge.svg?token=CRK4RMRFSH)](https://codecov.io/gh/kopia/kopia)[![Go Report Card](https://goreportcard.com/badge/github.com/kopia/kopia)](https://goreportcard.com/report/github.com/kopia/kopia)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](/CODE_OF_CONDUCT.md)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kopia/kopia)](https://hub.docker.com/r/kopia/kopia/tags?page=1&ordering=name)
+[![Downloads](https://img.shields.io/github/downloads/kopia/kopia/total.svg)](https://github.com/kopia/kopia/releases)
+[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Kopia%20Guru-006BFF)](https://gurubase.io/g/kopia)
+
+> _n._
+>
+> 1. _[copy, replica](https://en.wikipedia.org/wiki/Replica) (Polish)_
+> 2. _[lance, spear](https://en.wikipedia.org/wiki/Kopia)_
+> 3. _[fast and secure backup tool](https://kopia.io)_
+
+
+Kopia is a fast and secure open-source backup/restore tool that allows you to create [encrypted](https://kopia.io/docs/features/#end-to-end-zero-knowledge-encryption) snapshots of your data and save the snapshots to [remote or cloud storage](https://kopia.io/docs/features/#save-snapshots-to-cloud-network-or-local-storage) of your choice, [to network-attached storage or server](https://kopia.io/docs/features/#save-snapshots-to-cloud-network-or-local-storage), or [locally on your machine](https://kopia.io/docs/features/#save-snapshots-to-cloud-network-or-local-storage). Kopia does not 'image' your whole machine. Rather, Kopia allows you to backup/restore any and all files/directories that you deem are important or critical.
+
+Kopia has both [CLI (command-line interface)](https://kopia.io/docs/features/#both-command-line-and-graphical-user-interfaces) and [GUI (graphical user interface)](https://kopia.io/docs/features/#both-command-line-and-graphical-user-interfaces) versions, making it the perfect tool for both advanced and regular users. You can read more about Kopia's unique [features](https://kopia.io/docs/features/) -- which include [compression](https://kopia.io/docs/features/#compression), [deduplication](https://kopia.io/docs/features/#backup-files-and-directories-using-snapshots), [end-to-end 'zero knowledge' encryption](https://kopia.io/docs/features/#end-to-end-zero-knowledge-encryption), and [error correction](https://kopia.io/docs/features/#error-correction) -- to get a better understanding of how Kopia works.
+
+
+]]></description>
 
     <dependencies>
     		<dependency id="chocolatey-core.extension" version="1.3" />

@@ -2,8 +2,8 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
-		<id>{id}</id>
-		<version>0.0</version>
+		<id>SMathStudioDesktop</id>
+		<version>1.3.0.9126</version>
 
 		<title>SMath Studio</title>
 		<authors>Andrey Ivashov</authors>
@@ -42,9 +42,18 @@ Among its capabilities are:
 		<iconUrl>https://en.smath.com/img/favicon.ico</iconUrl>
 		<docsUrl>https://smath.com/wiki</docsUrl>
 
-		<packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
+		<packageSourceUrl>https://github.com/riedel/chocolatey-packages</packageSourceUrl>
 
-		<releaseNotes>{releaseNotes}</releaseNotes>
+		<releaseNotes>### Improvements
+
+- Suggestions logic is implemented to help users to use previously
+  built-in File Type plug-ins moved outside of the standard software
+  distribution package;
+- Page Setup dialog improved to allow selecting available substitutions
+  from the dropdown lists for header and footer;
+- The non-SI nit unit of measurement added to the Luminance dimension;
+- Icelandic interface transation added.
+</releaseNotes>
 
 		<dependencies>
 			<dependency id="chocolatey-core.extension" version="1.3" />

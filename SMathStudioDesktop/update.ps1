@@ -67,28 +67,13 @@ function global:au_GetLatest {
 
 }
 
-function global:au_BeforeUpdate($package) {
+function global:au_BeforeUpdateHook($package) {
     $Latest.ChecksumType32 = 'sha256' # Not necessary, but just my preference to add it
     $Latest.Checksum32 = Get-RemoteChecksum $Latest.URL32 -Algorithm $Latest.ChecksumType32 -Headers $Latest.Options.Headers # You can omit the algorithm, the function will use sha256 by default
-		$package.NuspecXml.package.metadata.ChildNodes|ForEach-Object { $cn=$_ ; $cn.innerText|select-String '{([A-Za-z_]*)}' -AllMatches| % {$_.matches.groups} | where-object {$_.Name -eq 1} | % {$cn.InnerText = $cn.InnerText -replace ("{"+$_.Value+"}"),$Latest[$_.Value]}} 
 }
 
+. "$PSScriptRoot\..\update_include.ps1"
 
 
-function global:au_SearchReplace {
-	@{
-		".\tools\chocolateyInstall.ps1" = @{
-			"(^\s*checksum\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum32)'"
-				"(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
-		}
-	}
-}
 
-function global:au_AfterUpdate($package) {
 
-}
-
-if ($MyInvocation.InvocationName -ne 'x.') { # run the update only if script is not sourced
-	Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination {$_.name -replace '.in$','' }
-	update -ChecksumFor none 
-}

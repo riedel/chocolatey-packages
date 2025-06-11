@@ -2,29 +2,29 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>{id}</id>
-    <version>0.0</version>
+    <id>browser-select</id>
+    <version>1.4.1</version>
 
-    <title>Stream What You Hear (SWYH)</title>
-    <authors>{authors}</authors>
+    <title>Browser Select</title>
+    <authors>Borhan Hafez</authors>
 
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
 
-    <projectUrl>{projectSourceUrl}</projectUrl>
-    <bugTrackerUrl>{projectSourceUrl}/issues</bugTrackerUrl>
-    <projectSourceUrl>{githubUrl}</projectSourceUrl>
-    <iconUrl>{githubRawUrl}/BrowserSelect/bs.ico</iconUrl>
-    <docsUrl>{githubUrl}/help/filters.md</docsUrl>
+    <projectUrl>https://github.com/zumoshi/BrowserSelect</projectUrl>
+    <bugTrackerUrl>https://github.com/zumoshi/BrowserSelect/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/zumoshi/BrowserSelect/tree/</projectSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/zumoshi/BrowserSelect/1.4.1/BrowserSelect/bs.ico</iconUrl>
+    <docsUrl>https://github.com/zumoshi/BrowserSelect/tree//help/filters.md</docsUrl>
     <!--mailingListUrl></mailingListUrl-->
 
-    <summary>{summary}</summary>
-    <tags>admin {tags}</tags>
-    <releaseNotes>{releaseNotes}</releaseNotes>
+    <summary>Browser Select is a utility to dynamically select the browser you want instead of just having one default for all links.</summary>
+    <tags>admin windows browser select customization utility</tags>
+    <releaseNotes>Thanks to [kthejoker](https://github.com/kthejoker) BrowserSelect loads faster than ever. Also, I finally fixed #52.</releaseNotes>
 
-    <licenseUrl>{licenseUrl}</licenseUrl>
-    <packageSourceUrl>{packageSourceUrl}</packageSourceUrl>
+    <licenseUrl>https://github.com/zumoshi/BrowserSelect/blob/master/LICENSE</licenseUrl>
+    <packageSourceUrl>https://github.com/riedel/chocolatey-packages</packageSourceUrl>
 
     <description>{description}</description>
 

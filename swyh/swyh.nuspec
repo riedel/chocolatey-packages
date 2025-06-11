@@ -111,16 +111,43 @@ Stream What You Hear (SWYH) is released under the GNU GPL license. Please see [L
 
 
     <projectUrl>http://www.streamwhatyouhear.com/</projectUrl>
-    <iconUrl>https://cdn.rawgit.com/StreamWhatYouHear/SWYH/1.5.0/SWYH/Resources/Icons/swyh128.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/StreamWhatYouHear/SWYH/1.5.0/SWYH/Resources/Icons/swyh128.png</iconUrl>
     <authors>Sébastien Warin</authors>
-    <version>1.5.0.20200524</version>
+    <version>1.5.0</version>
     <summary>Stream the sound from your PC to an UPnP/DLNA device</summary>
     <tags>admin stream upnp sound dlna mp3</tags>
     <licenseUrl>https://github.com/StreamWhatYouHear/SWYH/blob/master/LICENSE</licenseUrl>
-    <releaseNotes>https://github.com/StreamWhatYouHear/SWYH/releases/tag/1.5.0</releaseNotes>
+    <releaseNotes>## Changes:
+
+* 27e8167cac75af739852b21fa6e7bc1d41f0be7e Release 1.5
+* 5d2ca7fa8e800914bba3cf1aff8d13e31ffca4a3 Merge pull request #29 from Maqentaer/feature/source-select
+* 0d8591d83ccd9d8d1c17f50c348f2b5294e5e91c changed to getting only active audio device
+* 205565f2023b02e8b8fa2b87bcdb6c5281c37644 added option to select audio source (output type or input type devices)
+* 4b8c8b40f3be4b7cd25c416a34fc67b653830c75 Target platform AnyCPU
+* d65d614bc5b109c4a939764c8f194ad8a9040818 Update Inno script
+* 0853937702d4e756948ff981a0199ff884e5bd98 Remove missing Inno languages
+* 3f4d7b6dbc86609279c2e2f2dc246b03b36ff71d Include InnoSetup as Nuget package
+* 19addef18eb4147c6113306799ed7fe12a6f13a0 Fix crash on UPnP discovering
+* 0188e603427ac3394c9e0265ffb3548d859a59bd Use the same port for all network interfaces
+&lt;details&gt;&lt;summary&gt;&lt;b&gt;See More&lt;/b&gt;&lt;/summary&gt;
+
+* fc4302051b2db44046871fcbaca04c68ce0ce98e Use SemVer for check update
+* 28c4ac2f2cf91bcfe13bdc66ee9524a83cf16107 Update about box
+* bbca5f040abe6bda21cc2836f911c9395536a6b0 Show all listening HTTP streming URIs
+* f214fa59a15ce3d510f1346cc7f979a74653dc4c Fixes crash when getting UPnP device icon
+* 2a07bbc87dbfdc78b2068c8d16049aabe8c30ed7 Update SWYH UpnP device version
+* ef239514db2f7dd1fed8c6312b040237f4f9b0f7 Update NAudio 1.9 &amp; MP3 lame
+* 95a865a418133876047110346ff3f33db0461b70 Update setup version
+* 77052da31c950a70be646beafbae302da8a92ed9 Use GitVersion
+* c56c9b3dc741f408a6d0fd433714ca7bda8c496f Update copyright
+* ac73a8630c061fe422c860f3049a18000abd3836 Stop the timer while it's not recording
+* 9dbffb6ca0751aaddc53bf44fed5b43c7f1fb31d Merge pull request #15 from SaiYuen/master
+* b13cf55435179347894a12e8fb9390ec509ef34a Solve the crash on startup
+
+This list of changes was [auto generated](https://dev.azure.com/sebastienwarin/41932172-060c-4f2f-88c4-5eea2a7bf365/_release?releaseId=6&amp;_a=release-summary).&lt;/details&gt;</releaseNotes>
     <packageSourceUrl>https://github.com/riedel/chocolatey-packages</packageSourceUrl>
-    <projectSourceUrl>https://github.com/StreamWhatYouHear/SWYH</projectSourceUrl>
-    <bugTrackerUrl>https://github.com/riedel/chocolatey-packages/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/StreamWhatYouHear/SWYH/tree/1.5.0</projectSourceUrl>
+    <bugTrackerUrl>https://github.com/StreamWhatYouHear/SWYH/issues</bugTrackerUrl>
   </metadata>
 
   <files>

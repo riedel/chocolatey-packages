@@ -25,20 +25,20 @@ function global:au_GetLatest {
 	    URL32 = $url
         ChecksumType32 = "sha512"
         Checksum32= ([System.Convert]::FromBase64String($latest.files[0].sha512) | ForEach-Object { "{0:X2}" -f $_ }) -join ""
-        readmeUrl  = $github.readme.download_url
         Version = $github.release.tag_name.substring(1)
     	NuspecVersion = $Global:PackageVersion
-        packageSourceUrl   = 'https://github.com/' + ( global:git_getRepo )
+        authors = $github.release_author.name 
         projectUrl   = $github.repo.homepage 
-        projectSourceUrl   = $github.repo.html_url 
-        githubRawUrl   = 'https://raw.githubusercontent.com/' + $github_repository + '/' + $github.release.tag_name 
-        githubUrl   = 'https://github.com/' + $github_repository + '/tree/' + $github.release.tag_name 
+        bugTrackerUrl   = $github.repo.html_url  + '/issues'
+        projectSourceUrl  = 'https://github.com/' + $github_repository + '/tree/' + $github.release.tag_name 
+       	iconUrl = $github.raw_url + '/icons/kopia.svg'
+        readmeUrl  = $github.readme.download_url
+        summary = $github.repo.description 
+	    tags = 'admin ' + $github.topics
         releaseNotes = ( $github.release.body -split "`n" | Select-Object -skip 2 ) -join "`r`n" 
         licenseUrl = $github.license.html_url 
-        summary = $github.repo.description 
-        authors = $github.release_author.name 
-	    tags = 'admin ' + $github.topics
-       	iconPath = 'icons/kopia.svg'
+        packageSourceUrl   = 'https://github.com/' + ( global:git_getRepo )
+	    githubRawUrl= $github.raw_url
     }
 }
 

@@ -3,13 +3,14 @@ import-module au
 function global:github_vars($github_repository) {
 	$release = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/releases/latest")     
 	@{
-    		repo = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository)
-
+    	repo = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository)
 		release = $release
-    		license = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/license")     
+    	license = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/license")     
 		topics=(Invoke-RestMethod -Headers @{'Accept' = 'application/vnd.github.mercy-preview+json'} ("https://api.github.com/repos/" + $github_repository + "/topics")).names -join " "
 		readme = Invoke-RestMethod ("https://api.github.com/repos/" + $github_repository + "/readme")     
 		release_author = Invoke-RestMethod $release.author.url
+        raw_url   = 'https://raw.githubusercontent.com/' + $github_repository + '/' + $release.tag_name 
+        source_url  = 'https://github.com/' + $github_repository + '/tree/' + $github.release.tag_name 
 	}
 }
 
@@ -57,12 +58,12 @@ function global:au_BeforeUpdate ($package) {
   }
 
   $package.NuspecXml.package.metadata.ChildNodes | ForEach-Object {
-    $cn = $_; $cn.innerText | `
-       Select-String '{([A-Za-z_]*)}' -AllMatches | `
-       ForEach-Object { $_.matches.groups } | `
-       Where-Object { $_.Name -eq 1 } | `
-       ForEach-Object { $cn.innerText = $cn.innerText -replace ("{" + $_.Value + "}"),$Latest[$_.Value] }
+    $nodeName = $_.Name
+    if ($Latest.ContainsKey($nodeName)) {
+      $_.innerText = $Latest[$nodeName]
+    }
   }
+   return global:au_BeforeUpdateHook ($package)
 }
 
 function global:au_AfterUpdate ($package) {
@@ -71,14 +72,14 @@ function global:au_AfterUpdate ($package) {
   }
 }
 
-#if ( $MyInvocation.InvocationName -ne '.') { # run the update only if script is not sourced
-$Global:PackageVersion = ([xml](Get-Content .\*.nuspec)).package.metadata.version
-Get-ChildItem -Filter "*.nuspec" -Recurse | Copy-Item -Destination { $_.Name -replace '.nuspec$','.nuspec.bak' }
-Get-ChildItem -Filter "*.in" -Recurse | Copy-Item -Destination { $_.Name -replace '.in$','' }
-$package = update -ChecksumFor:none -NoCheckChocoVersion:$global:force -Force:$global:force
-$package
-if (!$package.updated)
-{
-  Get-ChildItem -Filter "*.nuspec.bak" -Recurse | Copy-Item -Destination { $_.Name -replace '.nuspec.bak$','.nuspec' }
-}
+if ( $MyInvocation.PSCommandPath -like "*update.ps1") { # run the update only if script is not sourced
+#$Global:PackageVersion = ([xml](Get-Content .\*.nuspec)).package.metadata.version
+#Get-ChildItem -Filter "*.nuspec" -Recurse | Copy-Item -Destination { $_.Name -replace '.nuspec$','.nuspec.bak' }
+	Set-Location (Split-Path $MyInvocation.PSCommandPath)
+	$package = update -ChecksumFor:none -NoCheckChocoVersion:$global:force -Force:$global:force
+	$package
+#if (!$package.updated)
+#{
+#  Get-ChildItem -Filter "*.nuspec.bak" -Recurse | Copy-Item -Destination { $_.Name -replace '.nuspec.bak$','.nuspec' }
 #}
+}
