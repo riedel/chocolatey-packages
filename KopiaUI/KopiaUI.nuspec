@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>KopiaUI</id>
-    <version>0.21.0</version>
+    <version>0.21.1</version>
 
     <title>Kopia UI</title>
     <authors>Kopia Builder [bot]</authors>
@@ -14,112 +14,34 @@
 
     <projectUrl>https://kopia.io</projectUrl>
     <bugTrackerUrl>https://github.com/kopia/kopia/issues</bugTrackerUrl>
-    <projectSourceUrl>https://github.com/kopia/kopia/tree/v0.21.0</projectSourceUrl>
+    <projectSourceUrl>https://github.com/kopia/kopia/tree/v0.21.1</projectSourceUrl>
     <docsUrl>https://kopia.io/docs/</docsUrl>
     <mailingListUrl>https://kopia.discourse.group/</mailingListUrl>
-    <iconUrl>https://raw.githubusercontent.com/kopia/kopia/v0.21.0/icons/kopia.svg</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/kopia/kopia/v0.21.1/icons/kopia.svg</iconUrl>
 
     <summary>Cross-platform backup tool for Windows, macOS &amp; Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included.</summary>
     <tags>admin deduplication backup google-cloud-storage encryption cloud hacktoberfest</tags>
     <releaseNotes>
-### Command-Line Interface
-
-* **New Feature** human-readable sizes for kopia ls ([#4696](https://github.com/kopia/kopia/issues/4696)) by Kian Kasad
-* **New Feature** add --disable-file-logging to suppress log file output ([#4686](https://github.com/kopia/kopia/issues/4686)) by Leonardo Cecchi
-* fix path printed by "kopia snapshot fix" commands ([#4638](https://github.com/kopia/kopia/issues/4638)) by Kian Kasad
-
-### General Improvements
-
-* cleanup clock bounds check ([#4720](https://github.com/kopia/kopia/issues/4720)) by Julio Lopez
-* **New Feature** check for clock skew on write session creation ([#4719](https://github.com/kopia/kopia/issues/4719)) by Julio Lopez
-* rename variable to `humanReadable` for consistency ([#4709](https://github.com/kopia/kopia/issues/4709)) by Julio Lopez
-* use require to cleanup snapshot tests ([#4708](https://github.com/kopia/kopia/issues/4708)) by Julio Lopez
-* add {peta,exa}byte prefixes ([#4707](https://github.com/kopia/kopia/issues/4707)) by Julio Lopez
-* use snapshot end time as tie breaker for equal start time ([#4705](https://github.com/kopia/kopia/issues/4705)) by Julio Lopez
-* minor cleanups ([#4704](https://github.com/kopia/kopia/issues/4704)) by Julio Lopez
-* migrate remnant piece to crypto/hkdf ([#4691](https://github.com/kopia/kopia/issues/4691)) by Julio Lopez
-* migrate to `crypto/{hkdf,pbkdf2,sha3}` ([#4678](https://github.com/kopia/kopia/issues/4678)) by Julio Lopez
-* small misc. cleanups ([#4666](https://github.com/kopia/kopia/issues/4666)) by Julio Lopez
-* typos ([#4659](https://github.com/kopia/kopia/issues/4659)) by Nathan Baulch
-* misc cleanups ([#4652](https://github.com/kopia/kopia/issues/4652)) by Julio Lopez
-* enable `forcetypeassert` linter ([#4624](https://github.com/kopia/kopia/issues/4624)) by Julio Lopez
-* minor cleanups ([#4621](https://github.com/kopia/kopia/issues/4621)) by Julio Lopez
-* upload tests ([#4619](https://github.com/kopia/kopia/issues/4619)) by Julio Lopez
-* misc cleanups ([#4615](https://github.com/kopia/kopia/issues/4615)) by Julio Lopez
-* minor cleanups in snapshot GC ([#4612](https://github.com/kopia/kopia/issues/4612)) by Julio Lopez
-* convenience make targets to install tools ([#4616](https://github.com/kopia/kopia/issues/4616)) by Julio Lopez
-* s/interface{}/any/ ([#4614](https://github.com/kopia/kopia/issues/4614)) by Julio Lopez
-* fix `TestSnapshotNoLeftoverCheckpoints` slowness ([#4611](https://github.com/kopia/kopia/issues/4611)) by Julio Lopez
-
-### Repository
-
-* create minimal cache.Storage interface ([#4618](https://github.com/kopia/kopia/issues/4618)) by Jarek Kowalski
-
 ### Server
 
-* fix snapshot scheduling in the event of machine goes to sleep ([#4682](https://github.com/kopia/kopia/issues/4682)) by Jarek Kowalski
-
-### Snapshots
-
-* **New Feature** Add periodic JSON progress output to snapshot verify ([#4645](https://github.com/kopia/kopia/issues/4645)) by Nick
-* completely ignore unsupported entries instead of reporting them as ignored errors to avoid snapshot warnings ([#4613](https://github.com/kopia/kopia/issues/4613)) by Jarek Kowalski
+* fixed scheduling bug ([#4732](https://github.com/kopia/kopia/issues/4732)) by Jarek Kowalski
 
 ### Storage Providers
 
-* Azure client cert env var ([#4726](https://github.com/kopia/kopia/issues/4726)) by Julio Lopez
-* rename `Options.ClientCertificate` for clarity ([#4724](https://github.com/kopia/kopia/issues/4724)) by Julio Lopez
-* add omitempty JSON tags in azure.Options ([#4721](https://github.com/kopia/kopia/issues/4721)) by Julio Lopez
-* add tags in azure.Options ([#4716](https://github.com/kopia/kopia/issues/4716)) by Julio Lopez
+* **New Feature** Azure Federated Identity support ([#4728](https://github.com/kopia/kopia/issues/4728)) by Julio Lopez
 
-### CI/CD
-
-* upgrade to Go 1.24 ([#4675](https://github.com/kopia/kopia/issues/4675)) by Julio Lopez
-* pin actions ([#4657](https://github.com/kopia/kopia/issues/4657)) by Julio Lopez
-* upgrade Go toolchain to 1.23.10 ([#4656](https://github.com/kopia/kopia/issues/4656)) by Julio Lopez
-* include date-time in temp dir name used for tests ([#4651](https://github.com/kopia/kopia/issues/4651)) by Julio Lopez
-
-
-### Graphical User Interface
-
-* extracted formatting utilities to separate module ([#370](https://github.com/kopia/htmlui/issues/370)) by Jarek Kowalski
-* moved policy utils to a separate module ([#367](https://github.com/kopia/htmlui/issues/367)) by Jarek Kowalski
-* component refactoring ([#365](https://github.com/kopia/htmlui/issues/365)) by Jarek Kowalski
-* fixed warnings during 'npm test' ([#345](https://github.com/kopia/htmlui/issues/345)) by Jarek Kowalski
-* reorganized test utilities ([#369](https://github.com/kopia/htmlui/issues/369)) by Jarek Kowalski
-* speed up tests that use polling with long intervals ([#368](https://github.com/kopia/htmlui/issues/368)) by Jarek Kowalski
-* refactored router mock setup ([#366](https://github.com/kopia/htmlui/issues/366)) by Jarek Kowalski
-* move cancelTask to a separate module ([#364](https://github.com/kopia/htmlui/issues/364)) by Jarek Kowalski
-* added test for top-level index.jsx ([#363](https://github.com/kopia/htmlui/issues/363)) by Jarek Kowalski
-* added tests for the App component ([#362](https://github.com/kopia/htmlui/issues/362)) by Jarek Kowalski
-* added tests for Policies page ([#361](https://github.com/kopia/htmlui/issues/361)) by Jarek Kowalski
-* added tests for DirectoryItems ([#360](https://github.com/kopia/htmlui/issues/360)) by Jarek Kowalski
-* added tests for DirectoryBreadcrums ([#359](https://github.com/kopia/htmlui/issues/359)) by Jarek Kowalski
-* added tests for SnapshotCreate component ([#358](https://github.com/kopia/htmlui/issues/358)) by Jarek Kowalski
-* added tests for SnapshotDirectory component ([#357](https://github.com/kopia/htmlui/issues/357)) by Jarek Kowalski
-* added forms test ([#351](https://github.com/kopia/htmlui/issues/351)) by Jarek Kowalski
-* more test coverage ([#350](https://github.com/kopia/htmlui/issues/350)) by Jarek Kowalski
-* added tests for the Logs component ([#349](https://github.com/kopia/htmlui/issues/349)) by Jarek Kowalski
-* add tests for Snapshots tab ([#348](https://github.com/kopia/htmlui/issues/348)) by Jarek Kowalski
-* added tests for the Repository tab ([#347](https://github.com/kopia/htmlui/issues/347)) by Jarek Kowalski
-* added tests for Tasks ([#346](https://github.com/kopia/htmlui/issues/346)) by Jarek Kowalski
-* added tests for TimesOfDayTest component ([#344](https://github.com/kopia/htmlui/issues/344)) by Jarek Kowalski
-* added tests for snapshot estimation ([#343](https://github.com/kopia/htmlui/issues/343)) by Jarek Kowalski
-* increased coverage for NotificationEditor.jsx ([#342](https://github.com/kopia/htmlui/issues/342)) by Jarek Kowalski
-* added tests for remaining repository setup pages ([#341](https://github.com/kopia/htmlui/issues/341)) by Jarek Kowalski
-* increase code coverage ([#340](https://github.com/kopia/htmlui/issues/340)) by Jarek Kowalski
-* moved tests to tests/ directory and reorganized by their target ([#339](https://github.com/kopia/htmlui/issues/339)) by Jarek Kowalski
 </releaseNotes>
 
     <licenseUrl>https://github.com/kopia/kopia/blob/master/LICENSE</licenseUrl>
     <packageSourceUrl>https://github.com///github</packageSourceUrl>
 
     <description><![CDATA[
-![Kopia](https://raw.githubusercontent.com/kopia/kopia/v0.21.0/icons/kopia.svg)
+![Kopia](https://raw.githubusercontent.com/kopia/kopia/v0.21.1/icons/kopia.svg)
 [![Build Status](https://github.com/kopia/kopia/workflows/Build/badge.svg)](https://github.com/kopia/kopia/actions?query=workflow%3ABuild)
 [![Slack](https://img.shields.io/badge/discuss-slack-blue.svg)](https://slack.kopia.io/) 
 [![GoDoc](https://godoc.org/github.com/kopia/kopia/repo?status.svg)](https://godoc.org/github.com/kopia/kopia/repo)
 [![Coverage Status](https://codecov.io/gh/kopia/kopia/branch/master/graph/badge.svg?token=CRK4RMRFSH)](https://codecov.io/gh/kopia/kopia)[![Go Report Card](https://goreportcard.com/badge/github.com/kopia/kopia)](https://goreportcard.com/report/github.com/kopia/kopia)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](https://raw.githubusercontent.com/kopia/kopia/v0.21.0/CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](https://raw.githubusercontent.com/kopia/kopia/v0.21.1/CODE_OF_CONDUCT.md)
 [![Docker Pulls](https://img.shields.io/docker/pulls/kopia/kopia)](https://hub.docker.com/r/kopia/kopia/tags?page=1&ordering=name)
 [![Downloads](https://img.shields.io/github/downloads/kopia/kopia/total.svg)](https://github.com/kopia/kopia/releases)
 [![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Kopia%20Guru-006BFF)](https://gurubase.io/g/kopia)
