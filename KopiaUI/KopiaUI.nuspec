@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>KopiaUI</id>
-    <version>0.22.2</version>
+    <version>0.22.3</version>
 
     <title>Kopia UI</title>
     <authors>Kopia Builder [bot]</authors>
@@ -14,38 +14,35 @@
 
     <projectUrl>https://kopia.io</projectUrl>
     <bugTrackerUrl>https://github.com/kopia/kopia/issues</bugTrackerUrl>
-    <projectSourceUrl>https://github.com/kopia/kopia/tree/v0.22.2</projectSourceUrl>
+    <projectSourceUrl>https://github.com/kopia/kopia/tree/v0.22.3</projectSourceUrl>
     <docsUrl>https://kopia.io/docs/</docsUrl>
     <mailingListUrl>https://kopia.discourse.group/</mailingListUrl>
-    <iconUrl>https://raw.githubusercontent.com/kopia/kopia/v0.22.2/icons/kopia.svg</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/kopia/kopia/v0.22.3/icons/kopia.svg</iconUrl>
 
     <summary>Cross-platform backup tool for Windows, macOS &amp; Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included.</summary>
     <tags>admin deduplication backup google-cloud-storage encryption cloud hacktoberfest</tags>
-    <releaseNotes>### Storage Providers
+    <releaseNotes>### Defect Fixes
 
-* Fix regression #5039: execute rclone with non-cancelling context ([#5040](https://github.com/kopia/kopia/issues/5040)) by Julio López
+* Fixes regression in dependency used for compression ([#5049](https://github.com/kopia/kopia/issues/5049))
 
+### Snapshots
 
-### Testing
-
-* allow S3 versioned tests cleanup to succeed ([#5038](https://github.com/kopia/kopia/issues/5038)) by Julio López
+* **New Feature** localfs support for passing options ([#5044](https://github.com/kopia/kopia/issues/5044)) by Jarek Kowalski
 
 ### CI/CD
 
-* make PR title options consistent with chlog ([#5036](https://github.com/kopia/kopia/issues/5036)) by Julio López
-
-</releaseNotes>
+* Remove ineffective omitempty tags ([#5037](https://github.com/kopia/kopia/issues/5037)) by Julio López</releaseNotes>
 
     <licenseUrl>https://github.com/kopia/kopia/blob/master/LICENSE</licenseUrl>
     <packageSourceUrl>https://github.com///github</packageSourceUrl>
 
     <description><![CDATA[
-![Kopia](https://raw.githubusercontent.com/kopia/kopia/v0.22.2/icons/kopia.svg)
+![Kopia](https://raw.githubusercontent.com/kopia/kopia/v0.22.3/icons/kopia.svg)
 [![Build Status](https://github.com/kopia/kopia/workflows/Build/badge.svg)](https://github.com/kopia/kopia/actions?query=workflow%3ABuild)
 [![Slack](https://img.shields.io/badge/discuss-slack-blue.svg)](https://slack.kopia.io/) 
 [![GoDoc](https://godoc.org/github.com/kopia/kopia/repo?status.svg)](https://godoc.org/github.com/kopia/kopia/repo)
 [![Coverage Status](https://codecov.io/gh/kopia/kopia/branch/master/graph/badge.svg?token=CRK4RMRFSH)](https://codecov.io/gh/kopia/kopia)[![Go Report Card](https://goreportcard.com/badge/github.com/kopia/kopia)](https://goreportcard.com/report/github.com/kopia/kopia)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](https://raw.githubusercontent.com/kopia/kopia/v0.22.2/CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](https://raw.githubusercontent.com/kopia/kopia/v0.22.3/CODE_OF_CONDUCT.md)
 [![Docker Pulls](https://img.shields.io/docker/pulls/kopia/kopia)](https://hub.docker.com/r/kopia/kopia/tags?page=1&ordering=name)
 [![Downloads](https://img.shields.io/github/downloads/kopia/kopia/total.svg)](https://github.com/kopia/kopia/releases)
 [![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Kopia%20Guru-006BFF)](https://gurubase.io/g/kopia)
