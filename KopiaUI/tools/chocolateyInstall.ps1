@@ -2,8 +2,8 @@
 $packageArgs = @{
   packageName            = $Env:ChocolateyPackageName
   fileType               = 'EXE'
-  url                    = 'https://github.com/kopia/kopia/releases/download/v0.22.3/KopiaUI-Setup-0.22.3.exe'
-  checksum               = 'B599E5EE1D382CAD54950F0ED6A1B7EF7D3B6005315BD6172585817E00498EC5D661F51BC6E646983369B32BC931B6BA090A5B5B91431AA73865D7702D42D534'
+  url                    = 'https://github.com/kopia/kopia/releases/download/v0.23.0/KopiaUI-Setup-0.23.0.exe'
+  checksum               = '2BCAA6AEA138DCA21E1A4C957AE2A5AD68AC6044D0902A0E1B072CF2955361559CD045D476F9258004A7FE681FF63A7A4BEF74CD89A2E3EF507A00B0C3299EFC'
   checksumType           = 'sha512'
   silentArgs 		 = '/S /allusers /disableAutoUpdates'
   validExitCodes         = @(0)
