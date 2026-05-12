@@ -27,7 +27,7 @@ function global:au_GetLatest {
     $package_repository= (git config remote.origin.url).split(":")[1].split(".")[0] 
 
 	$homepage = "https://smath.com/en-US"
-	$releases =  Invoke-WebRequest -Uri "$homepage/view/SMathStudio/history"
+	$releases =  Invoke-WebRequest -UseBasicParsing -Uri "$homepage/view/SMathStudio/history"
 
 	$stable = Get-FixedQuerySelectorAll $releases "div.stable" 
 
@@ -41,7 +41,7 @@ function global:au_GetLatest {
 
 	$releaseNotes = $stable[0].nextSibling().innerHtml|pandoc -f html -t markdown | Out-String
 
-	$release =  Invoke-WebRequest -Uri $link.href
+	$release =  Invoke-WebRequest -UseBasicParsing -Uri $link.href
 
 	$windows = Get-FixedQuerySelectorAll $release "div.platform-type" 
 

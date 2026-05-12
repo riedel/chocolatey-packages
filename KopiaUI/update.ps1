@@ -38,12 +38,12 @@ function global:au_GetLatest {
         releaseNotes = ( $github.release.body -split "`n" | Select-Object -skip 2 ) -join "`r`n" 
         licenseUrl = $github.license.html_url 
         packageSourceUrl   = 'https://github.com/' + ( global:git_getRepo )
-	    githubRawUrl= $github.raw_url
+	githubRawUrl= $github.raw_url
     }
 }
 
 function global:au_BeforeUpdateHook($package) {
-    $readme = ((Invoke-WebRequest -Uri $Latest.readmeUrl).Content) -replace '\]\(([\w\./]+)\)',('](' + $Latest.githubRawUrl + '/$1)') 
+    $readme = ((Invoke-WebRequest -UseBasicParsing -Uri $Latest.readmeUrl).Content) -replace '\]\(([\w\./]+)\)',('](' + $Latest.githubRawUrl + '/$1)') 
     $readme.substring(0, $readme.indexOf('When ready')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
 }
 

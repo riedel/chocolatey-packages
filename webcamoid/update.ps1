@@ -1,3 +1,10 @@
+[CmdletBinding()]
+param(
+  [switch]$force
+)
+
+$global:force=!(!($force))
+
 function global:au_GetLatest {
     $github_repository = "webcamoid/webcamoid"
     $github_build_repository = "riedel/webcamoid-build-for-chocolatey"
@@ -31,23 +38,24 @@ function global:au_GetLatest {
         summary = $github.repo.description
         authors = $github.release_author.login 
 	tags = $github.topics
+	file64=$installer
     }
 
 }
 
 
 function global:au_SearchReplace {
-@{
-        ".\tools\chocolateyInstall.ps1" = @{
-        }
-}
 }
 
 function global:au_BeforeUpdateHook($package) {
-    gh attestation verify $installer --owner riedel 
+    gh attestation verify $Latest.file64 --owner riedel 
     if ($LASTEXITCODE -ne 0) { throw "github attestation failed with exit code $LASTEXITCODE" }
 
     $Latest.verification | Out-File -Encoding "UTF8" ($package.Path + "\tools\VERIFICATION.txt")
+
+    $readme = ((Invoke-WebRequest -UseBasicParsing -Uri $Latest.readmeUrl).Content) -replace '\]\(([\w\./]+)\)',('](' + $Latest.githubRawUrl + '/$1)') 
+    $readme.substring(0, $readme.indexOf('## Build')) | Out-File -Encoding "UTF8" ($package.Path + "\README.md")
+    (Invoke-WebRequest -UseBasicParsing -Uri $Latest.licenseUrl).Content| Out-File -Encoding "UTF8" ($package.Path + "\tools\LICENSE.txt")
 }
 
 . "$PSScriptRoot\..\update_include.ps1"

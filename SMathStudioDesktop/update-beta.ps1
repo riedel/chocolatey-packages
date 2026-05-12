@@ -27,7 +27,7 @@ function global:au_GetLatest {
     $package_repository= (git config remote.origin.url).split(":")[1].split(".")[0] 
 
 	$homepage = "https://en.smath.com"
-	$releases =  Invoke-WebRequest -Uri "$homepage/view/SMathStudio/history"
+	$releases =  Invoke-WebRequest -UseBasicParsing -Uri "$homepage/view/SMathStudio/history"
 
 	$stable = Get-FixedQuerySelectorAll $releases "div.beta" 
 
